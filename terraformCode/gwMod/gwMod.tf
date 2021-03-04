@@ -3,12 +3,12 @@ variable "vpc_id" {
   type = string
 }
 #use aws public id as a variable
-variable "aws_public" {
+variable "segment_public" {
   type = string
 }
 
 #use aws private id as a variable
-variable "aws_private" {
+variable "segment_private" {
   type = string
 }
 
@@ -36,7 +36,7 @@ route {
 }
 #assign the aws public subnet to the route table
 resource "aws_route_table_association" "subnet-association" {
-  subnet_id      = var.aws_public
+  subnet_id      = var.segment_public
   route_table_id = aws_route_table.route_table_Public_gateway.id
 }
 
@@ -48,11 +48,11 @@ resource "aws_eip" "elastic_ip" {
 # NAT gateway for public
 resource "aws_nat_gateway" "nat_gateway" {
   depends_on = [
-    var.aws_public,
+    var.segment_public,
     aws_eip.elastic_ip,
   ]
   allocation_id = aws_eip.elastic_ip.id
-  subnet_id     = var.aws_public
+  subnet_id     = var.segment_public
 
   tags = {
     Name = "nat-gateway"
@@ -81,9 +81,9 @@ resource "aws_route_table" "NAT_route_table" {
 # associate route table to private subnet
 resource "aws_route_table_association" "associate_routetable_to_private_subnet" {
   depends_on = [
-    var.aws_private,
+    var.segment_private,
     aws_route_table.NAT_route_table,
   ]
-  subnet_id      = var.aws_private
+  subnet_id      = var.segment_private
   route_table_id = aws_route_table.NAT_route_table.id
 }
