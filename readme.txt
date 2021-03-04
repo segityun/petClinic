@@ -20,4 +20,7 @@ For more info check the pdf file
 
 
 
+#run this before commiting the first time and it will remember your credential for the session
+git config --global credential.helper cache
+
 __________________________________________________________
