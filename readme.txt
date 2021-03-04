@@ -18,6 +18,6 @@ write a script that take the data that got to the DB server write it into a file
 
 For more info check the pdf file
 
-add
+
 
 __________________________________________________________
