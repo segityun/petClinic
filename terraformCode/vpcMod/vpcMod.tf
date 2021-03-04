@@ -19,28 +19,28 @@ output "vpc_id" {
 }
 
 # Create a Private Subnet
-resource "aws_subnet" "aws_private" {
+resource "aws_subnet" "segment_private" {
   vpc_id     = aws_vpc.vpcOne.id
   cidr_block = "10.0.2.0/24"
   tags = {
-    Name = "aws_private"
+    Name = "segment_private"
   }
 }
 # output private subnet to use as variable
-output aws_private {
-  value = aws_subnet.aws_private
+output segment_private {
+  value = aws_subnet.segment_private
 }
 
 # Create a Public Subnet
-resource "aws_subnet" "aws_public" {
+resource "aws_subnet" "segment_public" {
   vpc_id     = aws_vpc.vpcOne.id
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
   tags = {
-    Name = "aws_public"
+    Name = "segment_public"
   }
 }
 # output public subnet to use as variable
-output aws_public {
-  value = aws_subnet.aws_public
+output segment_public {
+  value = aws_subnet.segment_public
 }
