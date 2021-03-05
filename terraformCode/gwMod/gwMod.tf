@@ -1,17 +1,3 @@
-#use VPC id as a variable
-variable "vpc_id" {
-  type = string
-}
-#use aws public id as a variable
-variable "segment_public" {
-  type = string
-}
-
-#use aws private id as a variable
-variable "segment_private" {
-  type = string
-}
-
 #create new internet gateway
 resource "aws_internet_gateway" "Public_gateway" {
   vpc_id = var.vpc_id
@@ -19,10 +5,7 @@ resource "aws_internet_gateway" "Public_gateway" {
     name = "Public_gateway"
   }
 }
-#output the aws internet gateway id to use as variable
-output "aws_internet_gateway" {
-  value = aws_internet_gateway.Public_gateway.id
-}
+
 #create new route table
 resource "aws_route_table" "route_table_Public_gateway" {
   vpc_id = var.vpc_id
@@ -34,6 +17,7 @@ route {
     Name = "route_table_Public_gateway"
   }
 }
+
 #assign the aws public subnet to the route table
 resource "aws_route_table_association" "subnet-association" {
   subnet_id      = var.segment_public
@@ -79,7 +63,7 @@ resource "aws_route_table" "NAT_route_table" {
 }
 
 # associate route table to private subnet
-resource "aws_route_table_association" "associate_routetable_to_private_subnet" {
+resource "aws_route_table_association" "associate_route_table_to_private_subnet" {
   depends_on = [
     var.segment_private,
     aws_route_table.NAT_route_table,

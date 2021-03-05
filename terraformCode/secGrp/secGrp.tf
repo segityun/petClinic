@@ -1,13 +1,3 @@
-# use VPC ID as variable
-variable "vpc_id" {
-  type = string
-}
-
-# use ingresses protocols as variables
-variable "ingresses" {
-  type    = list(number)
-  default = [80]
-}
 
 ##### First security Group
 # create aws security group with http inbound rules
@@ -38,10 +28,6 @@ resource "aws_security_group" "secGrpNginx" {
   tags = {
     "secGrpNginx" = "true"
   }
-}
-# output security group id to use it as variable
-output "security_group_secGrpNginx" {
-       value = aws_security_group.secGrpNginx.id
 }
 
 ##### Second security Group
@@ -74,10 +60,7 @@ resource "aws_security_group" "secGrpApp" {
     "secGrpApp" = "true"
   }
 }
-# output security group id to use it as variable
-output "security_group_secGrpApp" {
-       value = aws_security_group.secGrpApp.id
-}
+
 
 ##### Third security Group
 # create aws security group with http inbound rules
@@ -108,8 +91,4 @@ resource "aws_security_group" "secGrpRDS" {
   tags = {
     "secGrpRDS" = "true"
   }
-}
-# output security group id to use it as variable
-output "security_group_secGrpRDS" {
-       value = aws_security_group.secGrpRDS.id
 }

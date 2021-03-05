@@ -1,11 +1,5 @@
-#using aws public and security group ID as variables
-variable "segment_public" {
-  type = string
-}
-variable "security_group_id" {
-  type = string
-}
-#create aws ec2 instance named nginxPetOne with private subnet
+
+#create aws ec2 instance named nginxPetOne with public subnet
 resource "aws_instance" "nginxPetOne" {
   ami                    = "ami-0a91cd140a1fc148a"
   instance_type          = "t2.micro"
@@ -16,11 +10,8 @@ resource "aws_instance" "nginxPetOne" {
   }
 
 }
-# output Instance as variable
-output "nginxPetOne" {
-  value = aws_vpc.nginxPetOne.id
-}
-#create aws ec2 instance named nginxPetTwo with private subnet
+
+#create aws ec2 instance named nginxPetTwo with public subnet
 resource "aws_instance" "nginxPetTwo" {
   ami                    = "ami-0a91cd140a1fc148a"
   instance_type          = "t2.micro"
@@ -30,8 +21,4 @@ resource "aws_instance" "nginxPetTwo" {
     Name = "nginxPetTwo"
   }
 
-}
-# output Instance as variable
-output "nginxPetTwo" {
-  value = aws_vpc.nginxPetTwo.id
 }
