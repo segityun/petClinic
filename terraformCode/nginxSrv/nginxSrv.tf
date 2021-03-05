@@ -18,7 +18,7 @@ resource "aws_instance" "nginxPetOne" {
   }
 
 }
-#create aws ec2 instance named nginxPetTwo with private subnet.
+#create aws ec2 instance named nginxPetTwo with private subnet
 resource "aws_instance" "nginxPetTwo" {
   ami                    = "ami-0a91cd140a1fc148a"
   instance_type          = "t2.micro"
