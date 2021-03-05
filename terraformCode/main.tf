@@ -28,7 +28,7 @@ module "Nginx_instances" {
   source = "./nginxSrv"
   security_group_id = module.sec_group.security_group_secGrpNginx
   segment_public = module.vpc.segment_public
-  file = "./nginx.sh"
+  file = "./nginxSrv/nginx.sh"
 }
 module "load_balancers" {
   source = "./elbMod"
@@ -39,9 +39,9 @@ module "load_balancers" {
   segment_private = module.vpc.segment_private
   security_group_secGrpApp = module.sec_group.security_group_secGrpApp
 }
-module "app_instances" {
-  source = "./appSrv"
-  security_group_id = module.sec_group.security_group_secGrpApp
-  segment_private = module.vpc.segment_private
-  file = "./app.sh"
-}
+//module "app_instances" {
+//  source = "./appSrv"
+//  security_group_id = module.sec_group.security_group_secGrpApp
+//  segment_private = module.vpc.segment_private
+//  file = "./app.sh"
+//}

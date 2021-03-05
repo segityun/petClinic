@@ -16,5 +16,5 @@ variable "segment_public" {
 variable "segment_private" {
   type = string
 }
-variable "appPetOne" {}
-variable "appPetTwo" {}
+//variable "appPetOne" {}
+//variable "appPetTwo" {}
