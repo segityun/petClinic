@@ -11,8 +11,6 @@ resource "aws_instance" "nginxPetOne" {
   instance_type          = "t2.micro"
   subnet_id              = var.segment_public
   vpc_security_group_ids = [var.security_group_id]
-  #key_name = "terraform"
-  #user_data = file("configure_mysql.sh")
   tags = {
     Name = "nginxPetOne"
   }
@@ -28,8 +26,6 @@ resource "aws_instance" "nginxPetTwo" {
   instance_type          = "t2.micro"
   subnet_id              = var.segment_public
   vpc_security_group_ids = [var.security_group_id]
-  #key_name = "terraform"
-  #user_data = file("configure_mysql.sh")
   tags = {
     Name = "nginxPetTwo"
   }

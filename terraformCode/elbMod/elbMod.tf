@@ -14,7 +14,7 @@ variable "segment_private" {
   type = string
 }
 
-# Create a new Public load balancer
+####### Create a new Public load balancer
 resource "aws_elb" "petClinicPublicELB" {
   name               = "petClinicPublicELB"
   availability_zones = ["us-east-2"]
@@ -49,7 +49,7 @@ resource "aws_elb" "petClinicPublicELB" {
     Name = "petClinicPublicELB"
   }
 }
-# Create a new Private load balancer
+####### Create a new PuPrivateblic load balancer
 resource "aws_elb" "petClinicPrivateELB" {
   name               = "petClinicPrivateELB"
   availability_zones = ["us-east-2"]
