@@ -38,10 +38,12 @@ module "load_balancers" {
   segment_public = module.vpc.segment_public
   segment_private = module.vpc.segment_private
   security_group_secGrpApp = module.sec_group.security_group_secGrpApp
+  appPetOne = module.app_instances.appPetOne
+  appPetTwo = module.app_instances.appPetTwo
 }
-//module "app_instances" {
-//  source = "./appSrv"
-//  security_group_id = module.sec_group.security_group_secGrpApp
-//  segment_private = module.vpc.segment_private
-//  file = "./app.sh"
-//}
+module "app_instances" {
+  source = "./appSrv"
+  security_group_id = module.sec_group.security_group_secGrpApp
+  segment_private = module.vpc.segment_private
+  file = "./appSrv/app.sh"
+}
