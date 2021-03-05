@@ -4,7 +4,6 @@ variable "security_group_secGrpNginx" {
 variable "security_group_secGrpApp" {
   type = string
 }
-
 variable "nginxPetOne" {
   type = string
 }
@@ -21,11 +20,10 @@ variable "segment_private" {
 ####### Create a new Public load balancer
 resource "aws_elb" "petClinicPublicELB" {
   name               = "petClinicPublicELB"
-  availability_zones = ["us-east-2"]
+  availability_zones = [ "us-east-2" ]
   internal = false
-  load_balancer_type = "application"
   security_groups = [ var.security_group_secGrpNginx ]
-  subnets = [ var.segment_public ]
+  subnets = [ var.segmnet_public ]
       
 
   listener {
@@ -39,31 +37,29 @@ resource "aws_elb" "petClinicPublicELB" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:8000/"
+    target              = "HTTP:80/"
     interval            = 30
   }
 
   instances                   = [var.nginxPetTwo, var.nginxPetOne]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
-  connection_draining         = true
-  connection_draining_timeout = 400
 
   tags = {
     Name = "petClinicPublicELB"
   }
 }
+
 ####### Create a new PuPrivateblic load balancer
 resource "aws_elb" "petClinicPrivateELB" {
   name               = "petClinicPrivateELB"
-  availability_zones = ["us-east-2"]
+  availability_zones = [ "us-east-2" ]
   internal = true
-  load_balancer_type = "application"
   security_groups = [ var.security_group_secGrpApp ]
   subnets = [ var.segment_private ]
 
   listener {
-    instance_port     = 80
+    instance_port     = 8080
     instance_protocol = "http"
     lb_port           = 80
     lb_protocol       = "http"
@@ -73,15 +69,13 @@ resource "aws_elb" "petClinicPrivateELB" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:8000/"
+    target              = "HTTP:8080/"
     interval            = 30
   }
 
   instances                   = []
   cross_zone_load_balancing   = true
   idle_timeout                = 400
-  connection_draining         = true
-  connection_draining_timeout = 400
 
   tags = {
     Name = "petClinicPrivateELB"
