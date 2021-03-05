@@ -5,3 +5,4 @@ variable "segment_public" {
 variable "security_group_id" {
   type = string
 }
+variable "file" {}
