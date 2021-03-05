@@ -1,6 +1,10 @@
-variable "security_group_id" {
+variable "security_group_secGrpNginx" {
   type = string
 }
+variable "security_group_secGrpApp" {
+  type = string
+}
+
 variable "nginxPetOne" {
   type = string
 }
@@ -20,7 +24,7 @@ resource "aws_elb" "petClinicPublicELB" {
   availability_zones = ["us-east-2"]
   internal = false
   load_balancer_type = "application"
-  security_groups = [ var.security_group_id ]
+  security_groups = [ var.security_group_secGrpNginx ]
   subnets = [ var.segment_public ]
       
 
@@ -55,13 +59,13 @@ resource "aws_elb" "petClinicPrivateELB" {
   availability_zones = ["us-east-2"]
   internal = true
   load_balancer_type = "application"
-  security_groups = [ var.security_group_id ]
+  security_groups = [ var.security_group_secGrpApp ]
   subnets = [ var.segment_private ]
 
   listener {
-    instance_port     = 8080
+    instance_port     = 80
     instance_protocol = "http"
-    lb_port           = 8080
+    lb_port           = 80
     lb_protocol       = "http"
   }
 
@@ -73,7 +77,7 @@ resource "aws_elb" "petClinicPrivateELB" {
     interval            = 30
   }
 
-  instances                   = [var.nginxPetTwo, var.nginxPetOne]
+  instances                   = []
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
