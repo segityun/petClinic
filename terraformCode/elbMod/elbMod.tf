@@ -1,15 +1,15 @@
 variable "security_group_id" {
   type = string
 }
-variable "segment_private" {
+variable "nginxPetOne" {
   type = string
 }
-variable "segment_public" {
+variable "nginxPetTwo" {
   type = string
 }
 
 # Create a new load balancer
-resource "aws_elb" "publicELB" {
+resource "aws_elb" "petClinicPublicELB" {
   name               = "petClinicPublicELB"
   availability_zones = ["us-east-2"]
   internal = false
@@ -31,13 +31,13 @@ resource "aws_elb" "publicELB" {
     interval            = 30
   }
 
-  instances                   = [aws_instance.foo.id]
+  instances                   = [var.nginxPetTwo, var.nginxPetOne]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
   connection_draining_timeout = 400
 
   tags = {
-    Name = "foobar-terraform-elb"
+    Name = "petClinicPublicELB"
   }
 }

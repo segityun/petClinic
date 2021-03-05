@@ -18,6 +18,10 @@ resource "aws_instance" "nginxPetOne" {
   }
 
 }
+# output Instance as variable
+output "nginxPetOne" {
+  value = aws_vpc.nginxPetOne.id
+}
 #create aws ec2 instance named nginxPetTwo with private subnet
 resource "aws_instance" "nginxPetTwo" {
   ami                    = "ami-0a91cd140a1fc148a"
@@ -27,7 +31,11 @@ resource "aws_instance" "nginxPetTwo" {
   #key_name = "terraform"
   #user_data = file("configure_mysql.sh")
   tags = {
-    Name = "nginxPetOne"
+    Name = "nginxPetTwo"
   }
 
+}
+# output Instance as variable
+output "nginxPetTwo" {
+  value = aws_vpc.nginxPetTwo.id
 }
