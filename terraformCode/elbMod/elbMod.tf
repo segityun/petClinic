@@ -1,7 +1,6 @@
 ####### Create a new Public load balancer
 resource "aws_elb" "petClinicPublicELB" {
   name               = "petClinicPublicELB"
-  availability_zones = [ "us-east-2" ]
   internal = false
   security_groups = [ var.security_group_secGrpNginx ]
   subnets = [ var.segment_public ]
@@ -33,7 +32,6 @@ resource "aws_elb" "petClinicPublicELB" {
 //####### Create a new Private load balancer
 //resource "aws_elb" "petClinicPrivateELB" {
 //  name               = "petClinicPrivateELB"
-//  availability_zones = [ "us-east-2" ]
 //  internal = true
 //  security_groups = [ var.security_group_secGrpApp ]
 //  subnets = [ var.segment_private ]
