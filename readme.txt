@@ -40,3 +40,10 @@ and make sure the pem file is located next to the main.tf
 git config --global credential.helper cache
 
 __________________________________________________________
+
+
+
+steps done
+created VPC
+Created 3 security groups
+created two LB
