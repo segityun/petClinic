@@ -14,7 +14,7 @@ resource "aws_subnet" "segment_private1" {
   availability_zone = "us-east-2a"
   cidr_block = "10.0.10.0/24"
   tags = {
-    Name = "segment_private"
+    Name = "segment_private1"
   }
 }
 resource "aws_subnet" "segment_private2" {
@@ -22,7 +22,7 @@ resource "aws_subnet" "segment_private2" {
   availability_zone = "us-east-2b"
   cidr_block = "10.0.11.0/24"
   tags = {
-    Name = "segment_private"
+    Name = "segment_private2"
   }
 }
 
@@ -34,7 +34,7 @@ resource "aws_subnet" "segment_public1" {
   cidr_block = "10.0.0.0/24"
   map_public_ip_on_launch = true
   tags = {
-    Name = "segment_public"
+    Name = "segment_public1"
   }
 }
 resource "aws_subnet" "segment_public2" {
@@ -43,6 +43,6 @@ resource "aws_subnet" "segment_public2" {
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
   tags = {
-    Name = "segment_public"
+    Name = "segment_public2"
   }
 }

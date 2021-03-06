@@ -40,7 +40,7 @@ resource "aws_nat_gateway" "nat_gateway1" {
   subnet_id     = var.segment_public1
 
   tags = {
-    Name = "nat-gateway"
+    Name = "nat-gateway1"
   }
 }
 
@@ -54,7 +54,7 @@ resource "aws_route_table" "NAT_route_table1" {
   }
 
   tags = {
-    Name = "NAT-route-table"
+    Name = "NAT-route-table1"
   }
 }
 
@@ -78,7 +78,7 @@ resource "aws_nat_gateway" "nat_gateway2" {
   subnet_id     = var.segment_public2
 
   tags = {
-    Name = "nat-gateway"
+    Name = "nat-gateway2"
   }
 }
 
@@ -92,7 +92,7 @@ resource "aws_route_table" "NAT_route_table2" {
   }
 
   tags = {
-    Name = "NAT-route-table"
+    Name = "NAT-route-table2"
   }
 }
 
