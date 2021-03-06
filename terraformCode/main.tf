@@ -33,13 +33,14 @@ module "Nginx_instances" {
 module "load_balancers" {
   source = "./elbMod"
   security_group_secGrpNginx = module.sec_group.security_group_secGrpNginx
-  nginxPetOne = module.Nginx_instances.nginxPetOne
-  nginxPetTwo = module.Nginx_instances.nginxPetTwo
+  security_group_secGrpApp = module.sec_group.security_group_secGrpApp
   segment_public = module.vpc.segment_public
   segment_private = module.vpc.segment_private
-  security_group_secGrpApp = module.sec_group.security_group_secGrpApp
-  appPetOne = module.app_instances.appPetOne
-  appPetTwo = module.app_instances.appPetTwo
+  vpc_id = module.vpc.vpc_id
+  nginx_instance_id1 = module.Nginx_instances.nginxPetOne
+  nginx_instance_id2 = module.Nginx_instances.nginxPetTwo
+  app_instance_id1 = module.app_instances.appPetOne
+  app_instance_id2 = module.app_instances.appPetTwo
 }
 module "app_instances" {
   source = "./appSrv"

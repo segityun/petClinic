@@ -1,61 +1,61 @@
 ####### Create a new Public load balancer
-resource "aws_elb" "petClinicPublicELB" {
-  name               = "petClinicPublicELB"
+resource "aws_lb" "petClinicPublicALB" {
+  name = "petClinicPublicALB"
   internal = false
-  security_groups = [ var.security_group_secGrpNginx ]
-  subnets = [ var.segment_public ]
+  load_balancer_type = "application"
+  security_groups = [
+    var.security_group_secGrpNginx]
+  subnets = [
+    var.segment_public]
+}
+resource "aws_lb_listener" "front_end" {
+  load_balancer_arn = aws_lb.petClinicPublicALB.arn
+  port = "80"
+  protocol = "HTTP"
 
-  listener {
-    instance_port     = 80
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
+  default_action {
+    type = "forward"
+    target_group_arn = aws_lb_target_group.nginx_tg.arn
   }
-
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "HTTP:80/"
-    interval            = 30
-  }
-
-  instances                   = [var.nginxPetTwo, var.nginxPetOne]
-  cross_zone_load_balancing   = true
-  idle_timeout                = 400
-
-  tags = {
-    Name = "petClinicPublicELB"
-  }
+}
+resource "aws_lb_target_group" "nginx_tg" {
+  name     = "nginx_tf"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+}
+resource "aws_lb_target_group_attachment" "nginx" {
+  target_group_arn = aws_lb_target_group.nginx_tg.arn
+  target_id        = [var.nginx_instance_id1 ,var.nginx_instance_id2]
+  port             = 80
 }
 
 ####### Create a new Private load balancer
-resource "aws_elb" "petClinicPrivateELB" {
-  name               = "petClinicPrivateELB"
-  internal = true
-  security_groups = [ var.security_group_secGrpApp ]
-  subnets = [ var.segment_private ]
+resource "aws_alb" "petClinicPrivateALB" {
+  name = "petClinicPrivateALB"
+  internal = false
+  load_balancer_type = "application"
+  security_groups = [var.security_group_secGrpApp]
+  subnets = [var.segment_private]
+}
+resource "aws_lb_listener" "app" {
+  load_balancer_arn = aws_lb.petClinicPublicALB.arn
+  port = "8080"
+  protocol = "HTTP"
 
-  listener {
-    instance_port     = 8080
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
+  default_action {
+    type = "forward"
+    target_group_arn = aws_lb_target_group.app_tg.arn
   }
-
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "HTTP:8080/"
-    interval            = 30
-  }
-
-  instances                   = [var.appPetTwo ,var.appPetOne]
-  cross_zone_load_balancing   = true
-  idle_timeout                = 400
-
-  tags = {
-    Name = "petClinicPrivateELB"
-  }
+}
+resource "aws_lb_target_group" "app_tg" {
+  name     = "app_tf"
+  port     = 8080
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+}
+resource "aws_lb_target_group_attachment" "app" {
+  target_group_arn = aws_lb_target_group.app_tg.arn
+  target_id        = [var.app_instance_id1 ,var.app_instance_id2]
+  port             = 8080
 }

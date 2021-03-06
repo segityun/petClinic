@@ -4,17 +4,14 @@ variable "security_group_secGrpNginx" {
 variable "security_group_secGrpApp" {
   type = string
 }
-variable "nginxPetOne" {
-  type = string
-}
-variable "nginxPetTwo" {
-  type = string
-}
 variable "segment_public" {
   type = string
 }
 variable "segment_private" {
   type = string
 }
-variable "appPetOne" {}
-variable "appPetTwo" {}
+variable "vpc_id" {}
+variable "nginx_instance_id1" {}
+variable "nginx_instance_id2" {}
+variable "app_instance_id1" {}
+variable "app_instance_id2" {}
