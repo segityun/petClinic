@@ -10,6 +10,6 @@ sudo touch app-image
 echo "server {
         listen 80;
         server_name http://first_alb;
-        return 301 http://second_alb;
+        return 301 http://second_alb:8080;
 }" >> app-image
 #sudo systemctl enable nginx

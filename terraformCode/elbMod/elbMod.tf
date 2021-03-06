@@ -3,8 +3,7 @@ resource "aws_lb" "petClinicPublicALB" {
   name = "petClinicPublicALB"
   internal = false
   load_balancer_type = "application"
-  security_groups = [
-    var.security_group_secGrpNginx]
+  security_groups = [var.security_group_secGrpNginx]
   subnets = [var.segment_public1 ,var.segment_public2]
 }
 resource "aws_lb_listener" "front_end" {
@@ -34,7 +33,7 @@ resource "aws_lb_target_group_attachment" "nginx2" {
   port = 80
 }
 ####### Create a new Private load balancer
-resource "aws_alb" "petClinicPrivateALB" {
+resource "aws_lb" "petClinicPrivateALB" {
   name = "petClinicPrivateALB"
   internal = false
   load_balancer_type = "application"
@@ -42,7 +41,7 @@ resource "aws_alb" "petClinicPrivateALB" {
   subnets = [var.segment_private1 ,var.segment_private2]
 }
 resource "aws_lb_listener" "app" {
-  load_balancer_arn = aws_lb.petClinicPublicALB.arn
+  load_balancer_arn = aws_lb.petClinicPrivateALB.arn
   port = "8080"
   protocol = "HTTP"
 
