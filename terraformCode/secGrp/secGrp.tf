@@ -45,7 +45,7 @@ resource "aws_security_group" "secGrpApp" {
       from_port   = port.value
       to_port     = port.value
       protocol    = "TCP"
-      cidr_blocks = ["10.0.1.0/24, 10.0.0.0/24"]
+      cidr_blocks = ["10.0.1.0/24", "10.0.0.0/24"]
     }
   }
 
