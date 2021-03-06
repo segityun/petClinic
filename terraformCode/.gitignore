@@ -1,7 +1,0 @@
-.idea
-.terraform
-terraform.pem
-aws
-terraform.tfstate
-terraform.tfstate.backup
-.terraform.tfstate.lock.info
