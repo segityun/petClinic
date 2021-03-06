@@ -98,7 +98,7 @@ resource "aws_route_table" "NAT_route_table2" {
 
 # associate route table to private subnet
 resource "aws_route_table_association" "associate_route_table_to_private_subnet2" {
-  depends_on = [var.segment_private1, aws_route_table.NAT_route_table2,]
-  subnet_id      = var.segment_private1
+  depends_on = [var.segment_private2, aws_route_table.NAT_route_table2,]
+  subnet_id      = var.segment_private2
   route_table_id = aws_route_table.NAT_route_table2.id
 }
