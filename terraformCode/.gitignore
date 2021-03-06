@@ -1,0 +1,6 @@
+.idea
+.terraform
+terraform.pem
+aws
+terraform.tfsate
+terraform.tfstate.backup
