@@ -6,5 +6,5 @@ variable "vpc_id" {
 # use ingresses protocols as variables
 variable "ingresses" {
   type    = list(number)
-  default = [80]
+  default = [80, 8080]
 }
