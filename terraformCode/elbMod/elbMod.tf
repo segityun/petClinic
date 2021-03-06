@@ -5,8 +5,7 @@ resource "aws_lb" "petClinicPublicALB" {
   load_balancer_type = "application"
   security_groups = [
     var.security_group_secGrpNginx]
-  subnets = [
-    var.segment_public]
+  subnets = [var.segment_public1 ,var.segment_public2]
 }
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.petClinicPublicALB.arn
@@ -40,7 +39,7 @@ resource "aws_alb" "petClinicPrivateALB" {
   internal = false
   load_balancer_type = "application"
   security_groups = [var.security_group_secGrpApp]
-  subnets = [var.segment_private]
+  subnets = [var.segment_private1 ,var.segment_private2]
 }
 resource "aws_lb_listener" "app" {
   load_balancer_arn = aws_lb.petClinicPublicALB.arn
