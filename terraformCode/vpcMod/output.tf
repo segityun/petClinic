@@ -4,14 +4,14 @@ output "vpc_id" {
 }
 # output private subnet to use as variable
 output segment_private1 {
-  value = aws_subnet.segment_public1.id
+  value = aws_subnet.segment_private1.id
 }
 # output public subnet to use as variable
 output segment_public1 {
-  value = aws_subnet.segment_public2.id
+  value = aws_subnet.segment_public1.id
 }
 output "segment_public2" {
-  value = aws_subnet.segment_private1.id
+  value = aws_subnet.segment_public2.id
 }
 output "segment_private2" {
   value = aws_subnet.segment_private2.id
