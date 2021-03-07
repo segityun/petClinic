@@ -72,12 +72,12 @@ resource "aws_security_group" "secGrpRDS" {
 # add dynamic ingress rules list
  dynamic "ingress" {
     iterator = port
-    for_each = var.ingresses
+    for_each = ["3306" ,"33063"]
     content {
       from_port   = port.value
       to_port     = port.value
       protocol    = "TCP"
-      cidr_blocks = ["10.0.2.0/24"]
+      cidr_blocks = ["10.0.10.0/24", "10.0.11.0/24"]
     }
   }
 

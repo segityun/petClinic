@@ -16,3 +16,6 @@ output segment_private1 {
 output "segment_private2" {
   value = aws_subnet.segment_private2.id
 }
+output "db_subnet_group" {
+  value = aws_db_subnet_group.db_subnet_group.name
+}

@@ -56,3 +56,8 @@ module "app_instances" {
   segment_private2 = module.vpc.segment_private2
   file = "./appSrv/app.sh"
 }
+module "db_instance" {
+  source = "./dbSrv"
+  sec_group = module.sec_group.security_group_secGrpRDS
+  db_subnet_group = module.vpc.db_subnet_group
+}
