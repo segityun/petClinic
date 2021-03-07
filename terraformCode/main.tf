@@ -28,6 +28,7 @@ module "gateways" {
 }
 module "Nginx_instances" {
   source = "./nginxSrv"
+  key_pem = "intjoey2020.pem"
   security_group_id = module.sec_group.security_group_secGrpNginx
   segment_public1 = module.vpc.segment_public1
   segment_public2 = module.vpc.segment_public2
@@ -49,6 +50,7 @@ module "load_balancers" {
 }
 module "app_instances" {
   source = "./appSrv"
+  key_pem = "intjoey2020.pem"
   security_group_id = module.sec_group.security_group_secGrpApp
   segment_private1 = module.vpc.segment_private1
   segment_private2 = module.vpc.segment_private2

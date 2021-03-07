@@ -9,3 +9,6 @@ variable "segment_private2" {}
 variable "file" {
   type = string
 }
+variable "key_pem" {
+  type = string
+}
