@@ -35,7 +35,7 @@ resource "aws_lb_target_group_attachment" "nginx2" {
 ####### Create a new Private load balancer
 resource "aws_lb" "petClinicPrivateALB" {
   name = "petClinicPrivateALB"
-  internal = false
+  internal = true
   load_balancer_type = "application"
   security_groups = [var.security_group_secGrpApp]
   subnets = [var.segment_private1 ,var.segment_private2]
