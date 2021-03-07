@@ -5,8 +5,8 @@ resource "aws_db_instance" "petClinicDB" {
   engine_version       = "8.0.20"
   instance_class       = "db.t2.micro"
   name                 = "petClinicDB"
-  username             =  var.
-  password             = "Aa123456"
+  username             =  var.db_username
+  password             =  var.db_username
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
 }
