@@ -9,7 +9,9 @@ sudo rm /etc/nginx/sites-enabled/default
 sudo touch app-image
 echo "server {
         listen 80;
-        server_name http://first_alb;
-        return 301 http://second_alb:8080;
+        listen 8080;
+        location / {
+        proxy_pass aaaa:8080;
+}
 }" >> app-image
 #sudo systemctl enable nginx
