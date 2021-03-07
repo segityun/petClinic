@@ -9,6 +9,6 @@ resource "aws_db_instance" "petClinicDB" {
   password             = var.db_password
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = false
-  security_group_names = [var.sec_group]
+  vpc_security_group_ids = [var.sec_group]
   db_subnet_group_name = var.db_subnet_group
 }

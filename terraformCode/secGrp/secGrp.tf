@@ -60,24 +60,22 @@ resource "aws_security_group" "secGrpApp" {
     "secGrpApp" = "true"
   }
 }
-
-
 ##### Third security Group
 # create aws security group with http inbound rules
 resource "aws_security_group" "secGrpRDS" {
   name        = "secGrpRDS"
-  description = "Allow traffic between nginx VM to App VM"
+  description = "Allow traffic between App to RDS VM"
   vpc_id      = var.vpc_id
 
 # add dynamic ingress rules list
  dynamic "ingress" {
     iterator = port
-    for_each = ["3306" ,"33063"]
+    for_each = [3306]
     content {
       from_port   = port.value
       to_port     = port.value
       protocol    = "TCP"
-      cidr_blocks = ["10.0.10.0/24", "10.0.11.0/24"]
+      cidr_blocks = ["10.0.11.0/24", "10.0.10.0/24"]
     }
   }
 
@@ -92,3 +90,4 @@ resource "aws_security_group" "secGrpRDS" {
     "secGrpRDS" = "true"
   }
 }
+

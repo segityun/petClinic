@@ -46,15 +46,6 @@ resource "aws_subnet" "segment_public2" {
     Name = "segment_public2"
   }
 }
-resource "aws_subnet" "segment_private_db" {
-  vpc_id     = aws_vpc.vpcOne.id
-  availability_zone = "us-east-2b"
-  cidr_block = "10.0.55.0/24"
-  map_public_ip_on_launch = true
-  tags = {
-    Name = "segment_db"
-  }
-}
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "db_subnet_group"
   subnet_ids = [aws_subnet.segment_private1.id, aws_subnet.segment_private2.id]
