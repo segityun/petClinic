@@ -1,10 +1,10 @@
 # use username as variable
 variable "db_username" {
-    default = admin
+    default = "admin"
 }
 # use password as variable
 variable "db_password" {
-    default = Aa123456
+    default = "Aa123456"
 }
 
 
