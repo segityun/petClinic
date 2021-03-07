@@ -4,3 +4,4 @@ terraform.pem
 aws
 terraform.tfsate
 terraform.tfstate.backup
+terraformCode/terraform.tfstate
