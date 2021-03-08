@@ -10,7 +10,10 @@ resource "aws_instance" "nginxPetOne" {
   tags = {
     Name = "nginxPetOne"
   }
-
+  provisioner "file" {
+    source = "./elbMod/output.tf"
+    destination = "/ubuntu/home"
+  }
 }
 
 #create aws ec2 instance named nginxPetTwo with public subnet
@@ -23,6 +26,10 @@ resource "aws_instance" "nginxPetTwo" {
   user_data = file (var.file)
   tags = {
     Name = "nginxPetTwo"
+  }
+  provisioner "file" {
+    source      = "./elbMod/output.tf"
+    destination = "/ubuntu/home/alb_name.txt"
   }
 
 }
