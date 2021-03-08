@@ -12,7 +12,7 @@ resource "aws_instance" "nginxPetOne" {
   }
   provisioner "file" {
     source = "./elbMod/output.tf"
-    destination = "/ubuntu/home"
+    destination = "/home/ubuntu/output.tf"
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_instance" "nginxPetTwo" {
   }
   provisioner "file" {
     source      = "./elbMod/output.tf"
-    destination = "/ubuntu/home/output.tf"
+    destination = "/home/ubuntu/output.tf"
   }
 
 }
