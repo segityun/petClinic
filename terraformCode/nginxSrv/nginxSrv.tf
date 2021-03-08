@@ -29,7 +29,7 @@ resource "aws_instance" "nginxPetTwo" {
   }
   provisioner "file" {
     source      = "./elbMod/output.tf"
-    destination = "/ubuntu/home/alb_name.txt"
+    destination = "/ubuntu/home/output.tf"
   }
 
 }
