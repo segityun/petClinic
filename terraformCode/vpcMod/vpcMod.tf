@@ -12,7 +12,7 @@ resource "aws_vpc" "vpcOne" {
 resource "aws_subnet" "segment_private1" {
   vpc_id     = aws_vpc.vpcOne.id
   availability_zone = "us-east-2a"
-  cidr_block = "10.0.10.0/24"
+  cidr_block = var.private_cidr1
   tags = {
     Name = "segment_private1"
   }
@@ -20,7 +20,7 @@ resource "aws_subnet" "segment_private1" {
 resource "aws_subnet" "segment_private2" {
   vpc_id     = aws_vpc.vpcOne.id
   availability_zone = "us-east-2b"
-  cidr_block = "10.0.11.0/24"
+  cidr_block = var.private_cidr2
   tags = {
     Name = "segment_private2"
   }
@@ -31,7 +31,7 @@ resource "aws_subnet" "segment_private2" {
 resource "aws_subnet" "segment_public1" {
   vpc_id     = aws_vpc.vpcOne.id
   availability_zone = "us-east-2a"
-  cidr_block = "10.0.0.0/24"
+  cidr_block = var.public_cidr1
   map_public_ip_on_launch = true
   tags = {
     Name = "segment_public1"
@@ -40,7 +40,7 @@ resource "aws_subnet" "segment_public1" {
 resource "aws_subnet" "segment_public2" {
   vpc_id     = aws_vpc.vpcOne.id
   availability_zone = "us-east-2b"
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.public_cidr2
   map_public_ip_on_launch = true
   tags = {
     Name = "segment_public2"

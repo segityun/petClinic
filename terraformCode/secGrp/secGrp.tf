@@ -45,7 +45,7 @@ resource "aws_security_group" "secGrpApp" {
       from_port   = port.value
       to_port     = port.value
       protocol    = "TCP"
-      cidr_blocks = ["10.0.1.0/24", "10.0.0.0/24"]
+      cidr_blocks = [var.public_cidr1, var.public_cidr2]
     }
   }
 
@@ -75,7 +75,7 @@ resource "aws_security_group" "secGrpRDS" {
       from_port   = port.value
       to_port     = port.value
       protocol    = "TCP"
-      cidr_blocks = ["10.0.11.0/24", "10.0.10.0/24"]
+      cidr_blocks = [var.private_cidr2, var.private_cidr2]
     }
   }
 

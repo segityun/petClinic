@@ -19,3 +19,15 @@ output "segment_private2" {
 output "db_subnet_group" {
   value = aws_db_subnet_group.db_subnet_group.name
 }
+output "public_cidr1" {
+  value = aws_subnet.segment_public1.cidr_block
+}
+output "public_cidr2" {
+  value = aws_subnet.segment_public2.cidr_block
+}
+output "private_cidr1" {
+  value = aws_subnet.segment_private1.cidr_block
+}
+output "private_cidr2" {
+  value = aws_subnet.segment_private2.cidr_block
+}

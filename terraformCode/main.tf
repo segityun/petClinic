@@ -16,6 +16,10 @@ module "vpc" {
 }
 module "sec_group" {
   source = "./secGrp"
+  public_cidr1 = module.vpc.public_cidr1
+  public_cidr2 = module.vpc.public_cidr2
+  private_cidr1 = module.vpc.private_cidr1
+  private_cidr2 = module.vpc.private_cidr2
   vpc_id = module.vpc.vpc_id
 }
 module "gateways" {
