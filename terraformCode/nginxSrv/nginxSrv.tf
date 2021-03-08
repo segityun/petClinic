@@ -17,7 +17,7 @@ resource "aws_instance" "nginxPetOne" {
     connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = file("C:/Users/KoJoey/Desktop/intjoey2020.pem")
+    private_key = file("D:/Documents/DevOps Course/aws/clusterkey.pem")
     host        = self.public_dns
     timeout = "30s"
   }
@@ -42,7 +42,7 @@ resource "aws_instance" "nginxPetTwo" {
     connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = file("C:/Users/KoJoey/Desktop/intjoey2020.pem")
+    private_key = file("D:/Documents/DevOps Course/aws/clusterkey.pem")
     host        = self.public_dns
     timeout = "30s"
   }
