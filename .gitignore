@@ -6,3 +6,4 @@ terraform.tfsate
 terraform.tfstate.backup
 terraformCode/terraform.tfstate
 terraformCode/dbSrv/secret.tf
+terraformCode/.terraform.tfstate.lock.info
