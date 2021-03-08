@@ -32,6 +32,7 @@ module "gateways" {
 }
 module "Nginx_instances" {
   source = "./nginxSrv"
+  key_pem = "clusterkey"
   security_group_id = module.sec_group.security_group_secGrpNginx
   segment_public1 = module.vpc.segment_public1
   segment_public2 = module.vpc.segment_public2

@@ -10,14 +10,19 @@ resource "aws_instance" "nginxPetOne" {
   tags = {
     Name = "nginxPetOne"
   }
+  provisioner "local-exec" {
+   working_dir = "./terraformCode"
+   command = "terraform output | cut -d ' ' -f3 >> lb_name.txt"
+  
+  }
   provisioner "file" {
-    source = "./elbMod/output.tf"
-    destination = "/home/ubuntu/output.tf"
+    source      = "./terraformcode/lb_name.txt"
+    destination = "/home/ubuntu/lb_name.txt"
 
     connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = file("D:/Documents/DevOps Course/aws/clusterkey.pem")
+    private_key = file("/mnt/c/Users/Bamb4Boy/pem/clusterkey.pem")
     host        = self.public_dns
     timeout = "30s"
   }
@@ -35,14 +40,19 @@ resource "aws_instance" "nginxPetTwo" {
   tags = {
     Name = "nginxPetTwo"
   }
+  provisioner "local-exec" {
+   working_dir = "./terraformCode"
+   command = "terraform output | cut -d ' ' -f3 >> lb_name.txt"
+  
+  }
   provisioner "file" {
-    source      = "./elbMod/output.tf"
-    destination = "/home/ubuntu/output.tf"
+    source      = "./terraformcode/lb_name.txt"
+    destination = "/home/ubuntu/lb_name.txt"
 
     connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = file("D:/Documents/DevOps Course/aws/clusterkey.pem")
+    private_key = file("/mnt/c/Users/Bamb4Boy/pem/clusterkey.pem")
     host        = self.public_dns
     timeout = "30s"
   }

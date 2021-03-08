@@ -5,3 +5,6 @@ variable "security_group_id" {}
 variable "file" {
   type = string
 }
+variable "key_pem" {
+  type = string
+}
