@@ -13,7 +13,15 @@ resource "aws_instance" "nginxPetOne" {
   provisioner "file" {
     source = "./elbMod/output.tf"
     destination = "/home/ubuntu/output.tf"
+
+    connection {
+    type     = "ssh"
+    user     = "ubuntu"
+    private_key = file("C:/Users/Segev/Desktop/int2020.pem")
+    host        = self.public_dns
+    timeout = "30s"
   }
+}
 }
 
 #create aws ec2 instance named nginxPetTwo with public subnet
@@ -30,6 +38,13 @@ resource "aws_instance" "nginxPetTwo" {
   provisioner "file" {
     source      = "./elbMod/output.tf"
     destination = "/home/ubuntu/output.tf"
-  }
 
+    connection {
+    type     = "ssh"
+    user     = "ubuntu"
+    private_key = file("C:/Users/Segev/Desktop/int2020.pem")
+    host        = self.public_dns
+    timeout = "30s"
+  }
+  }
 }

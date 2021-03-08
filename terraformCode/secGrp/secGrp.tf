@@ -40,7 +40,7 @@ resource "aws_security_group" "secGrpApp" {
 # add dynamic ingress rules list
  dynamic "ingress" {
     iterator = port
-    for_each = var.ingresses
+    for_each = [80, 8080]
     content {
       from_port   = port.value
       to_port     = port.value

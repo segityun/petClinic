@@ -6,7 +6,7 @@ variable "vpc_id" {
 # use ingresses protocols as variables
 variable "ingresses" {
   type    = list(number)
-  default = [80, 8080]
+  default = [80, 8080, 22]
 }
 variable "public_cidr1" {}
 variable "public_cidr2" {}
